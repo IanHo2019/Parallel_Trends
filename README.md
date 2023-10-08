@@ -31,7 +31,7 @@ The most popular way of assessing the PT assumption *was* visualizing the averag
 
 $$\frac{1}{N_1} \sum_{i \in G_1} (Y_{it} – Y_{it'}) = \frac{1}{N_0} \sum_{i \in G_0} (Y_{it} – Y_{it'}) \quad \forall t, t' < t^* \text{ and } t \neq t'$$
 
-where $N_1$ and $N_0$ are number of observations in treated and control groups ($G_1$ and $G_0$) respectively, $Y_{it}$ is an observed outcome, and $t^*$ indicates the treatment time. An example is shown below (Stata coding is [here](./Coding/PTA_graph.do)).
+where $N_1$ and $N_0$ are number of observations in treated and control groups ($G_1$ and $G_0$) respectively, $Y_{it}$ is an observed outcome, and $t^*$ indicates the treatment time. An example is shown below (Stata coding is [here](https://github.com/IanHo2019/Parallel_Trends/blob/main/Coding/PTA_graph.do)).
 
 <div align="center">
   <img src="./Figures/PTA_graph_evidence.svg" title="Graphic Evidence for Parallel Trends Assumption" alt="Graphic Evidence for Parallel Trends Assumption" style="width:75%"/>
@@ -40,7 +40,7 @@ where $N_1$ and $N_0$ are number of observations in treated and control groups (
 ### Event-Study Evidence
 The visualization method is tiresome in staggered DID setting. In such cases, researchers had ever turned to a simple event-study specification (usually with a plot reporting results). The specification has the following form:
 $$Y_{i,t} = \alpha_i + \phi_t + \sum_{s=0}^{S} D_{i,t-s} \beta_s + \sum_{s=1}^S D_{i,t+s} \gamma_s + e_{i,t}$$
-where $D_{i,t}$ is a dummy equaling 1 if unit $i$ is (or has been) treated in period $t$ and equaling 0 otherwise. If the estimate of $\gamma_s$ (the pre-treatment parameter) is insignificant for all $s \in \\{1, 2, 3,…, S\\}$, researchers conclude that the parallel trends assumption is satisfied. A Stata coding example is [here](./Coding/PTA_event_study.do).
+where $D_{i,t}$ is a dummy equaling 1 if unit $i$ is (or has been) treated in period $t$ and equaling 0 otherwise. If the estimate of $\gamma_s$ (the pre-treatment parameter) is insignificant for all $s \in \\{1, 2, 3,…, S\\}$, researchers conclude that the parallel trends assumption is satisfied. A Stata coding example is [here](https://github.com/IanHo2019/Parallel_Trends/blob/main/Coding/PTA_event_study.do).
 
 ### Flaws of Traditional Methods
 Unfortunately, neither method provides a good assessment of the PT assumption. The key reason is that they focus on the pre-treatment trends, but our interest is the trends over all time periods (including pre- and post-treatment periods). An interesting instance against the traditional PT test is given by [Roth et al. (2023)](https://doi.org/10.1016/j.jeconom.2023.03.008):
