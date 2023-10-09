@@ -51,6 +51,28 @@ Other reasons include:
  * The assessment based on the visualization of average outcomes depend on users' sense of sight. Plotting on empirical data often shows two lines that look imperfectly parallel. Then, how to assess?
  * The assessment based on an event-study regression in staggered setting is potentially biased because each coefficient estimate is contaminated by the cohort-specific ATT in other periods. See [Sun & Abraham (2021)](https://doi.org/10.1016/j.jeconom.2020.09.006) for details.
 
-Therefore, we hunger for some more robust methods of assessing the PT assumption. More importantly, if the PT assumption really doesn't hold, we also hunger for some ways to relax it.
+Therefore, we hunger for some more robust methods of assessing the PT assumption. More importantly, if the PT assumption really doesn't hold, we also hunger for some ways to do causal inference under its relaxed version.
 
 ## Relaxing PT: Bounding Post-Treatment Differences in Trends
+[Rambachan & Roth (2023)](https://doi.org/10.1093/restud/rdad018) relax the PT assumption by imposing some restrictions on the post-treatment differences in trends. They further provide two inference procedures (conditional \& hybrid confidence intervals and fixed length confidence intervals) that are valid under their specified restrictions.
+
+To understand their idea, we first must realize that the coefficient of interest $\beta$ in a DID specification can be decomposed as
+
+$$\beta = \tau + \delta = \begin{pmatrix} \tau_{pre} \\\\ \tau_{post} \end{pmatrix} + \begin{pmatrix} \delta_{pre} \\\\ \delta_{post} \end{pmatrix}$$
+
+where $\tau$ is the causal effect of interest and $\delta$ is the difference in trends between the treated and control groups in the absence of treatment. $\delta_{pre}$ is identified under the NA assumption ($\tau_{pre} = 0$), but $\tau_{post}$ cannot be identified if the PT assumption doesn't exactly hold ($\delta_{post} \neq 0$). From this decomposition we can also see how "ridiculous" the traditional PT test is --- the traditional test assesses whether $\delta_{post} = 0$ by testing $\delta_{pre} = 0$.
+
+Rambachan and Roth then provide some choices of restriction sets $\Delta$ for parameter $\delta$:
+ * If researchers believe that **the magnitude of the differential shocks to treated and control groups in the post-treatment period is not too different from the magnitude in the pre-treatment period**, then a reasonable restriction set is
+$$\delta \in \Delta^{RM}(M) := \left\\{ \delta: \forall t \geq 0, |\delta_{t+1} - \delta_t| \leq M \cdot \max_{s < 0} |\delta_{s+1} - \delta_s| \right\\}$$
+where $RM$ is the abbreviation for "**relative magnitude**", and $M \geq 0$ is a number specified by researchers. For example, $M = 1$ bounds the largest post-treatment difference in trends by the equivalent maximum in the pre-treatment period.
+ * If researchers believe that **the slope of the difference in trends varies smoothly across consecutive periods**, then a reasonable restriction set is
+$$\delta \in \Delta^{SD}(M) := \left\\{ \delta: \forall t, |(\delta_{t+1} - \delta_t) - (\delta_t - \delta_{t-1})| \leq M \right\\}$$
+where $SD$ is the abbreviation for "**second derivative**" ($M \geq 0$ restricts the amount by which the slope of $\delta$ can change across consecutive periods, so equivalently it restricts the second derivative). As above, $M$ is a number specified by researchers; for example, if $M = 0$, then the difference in trends is restricted to be exactly linear.
+
+Rambachan and Roth recommend that researchers should
+ * Construct confidence intervals under reasonable restrictions on the violations of PT assumption, in which the set $\Delta$ should be motivated by domain knowledge in empirical settings.
+ * Conduct sensitivity analyses to show how the estimated causal effect is sensitive to alternative restrictions.
+ * Report the breakdown value of $M$ at which the estimated causal effect is no longer significant. 
+
+The sensitivity analyses can be done by the `HonestDiD` package (written by [Ashesh Rambachan](https://asheshrambachan.github.io) at MIT) in R or `honestdid` package (written by Ashesh Rambachan, [Mauricio Caceres Bravo](https://mcaceresb.github.io) at Brown University, and [Jonathan Roth](https://www.jonathandroth.com) at Brown University) in Stata.
