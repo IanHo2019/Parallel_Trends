@@ -89,7 +89,7 @@ See [here](https://github.com/asheshrambachan/HonestDiD) for an R coding example
   <img src="./Figures/Sensitivity_Analysis_RM.svg" title="Sensitivity Analysis under Relative Magnitude Restriction" alt="Sensitivity Analysis under Relative Magnitude Restriction" style="width:75%"/>
 </div>
 
-Looking at the figure above, we can easily find that the breakdown value for a significant effect is about 2.0. This figure provides strong evidence for the significance of the estimated causal effect $\tau_{2014}$, because it shows that the effect is significantly different from 0 even when the trends are inexactly parallel (i.e., when $M$ ranges from 0 to about 1.5).
+Looking at the figure above, we can easily find that the breakdown value for a significant effect is about 2.0. This figure provides strong evidence for the significance of the estimated causal effect $\tau_{2014}$, because it shows that the effect is significantly different from 0 even when the trends are inexactly parallel (i.e., when $M$ ranges from 0 to 1.5).
 
 It is hopeful that [Rambachan & Roth (2023)](https://doi.org/10.1093/restud/rdad018)'s sensitivity analyses can be combined with [Callaway & Sant'Anna (2021)](https://doi.org/10.1016/j.jeconom.2020.12.001)'s heterogeneity-robust DID method. See [here](https://doi.org/10.1016/j.jeconom.2020.12.001) for an example showing how to combine them. However, note that this combination is still a work in progress and as of now no theoretical papers have discussed its plausibility. Plus, there might be some errors in that self-defined function (since I [found](https://github.com/IanHo2019/Parallel_Trends/blob/main/Coding/RR_CSDID_Cooperation.R) that it doesn't work well on Medicaid Expansion dataset when argument `e` is set to 1 or larger).
 
