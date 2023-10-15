@@ -93,6 +93,6 @@ Looking at the figure above, we can easily find that the breakdown value for a s
 
 It is hopeful that [Rambachan & Roth (2023)](https://doi.org/10.1093/restud/rdad018)'s sensitivity analyses can be combined with [Callaway & Sant'Anna (2021)](https://doi.org/10.1016/j.jeconom.2020.12.001)'s heterogeneity-robust DID method. See [here](https://doi.org/10.1016/j.jeconom.2020.12.001) for an example showing how to combine them. However, note that this combination is still a work in progress and as of now no theoretical papers have discussed its plausibility. Plus, there might be some errors in that self-defined function (since I [found](https://github.com/IanHo2019/Parallel_Trends/blob/main/Coding/RR_CSDID_Cooperation.R) that it doesn't work well on Medicaid Expansion dataset when argument `e` is set to 1 or larger).
 
-Finally, [here](https://github.com/mcaceresb/stata-honestdid) is a guideline for Stata users about the use of `honestdid` package. At this moment I cannot successfully install and try it because I am in a fantastic region within the [Wall](https://awoiaf.westeros.org/index.php/Wall).
+Finally, [here](https://github.com/mcaceresb/stata-honestdid) is a guideline for Stata users about the use of `honestdid` package.
 
 ## To Be Continued...
