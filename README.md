@@ -56,7 +56,7 @@ Therefore, we hunger for some more robust methods of assessing the PT assumption
 ## Relaxing PT: Bounding Post-Treatment Differences in Trends
 [Rambachan & Roth (2023)](https://doi.org/10.1093/restud/rdad018) relax the PT assumption by imposing some restrictions on the post-treatment differences in trends. They further provide two inference procedures (conditional \& hybrid confidence intervals and fixed length confidence intervals) that are valid under their specified restrictions.
 
-To understand their idea, we first must realize that the coefficient of interest $\beta$ in a DID specification can be decomposed as
+Their approaches are under the *assumption* that the coefficient of interest $\beta$ in a DID specification can be decomposed as
 
 $$\beta = \tau + \delta = \begin{pmatrix} \tau_{pre} \\\\ \tau_{post} \end{pmatrix} + \begin{pmatrix} \delta_{pre} \\\\ \delta_{post} \end{pmatrix}$$
 
@@ -96,4 +96,4 @@ It is hopeful that [Rambachan & Roth (2023)](https://doi.org/10.1093/restud/rdad
 Finally, [here](https://github.com/mcaceresb/stata-honestdid) is a guideline for Stata users about the use of `honestdid` package. Note that to plot confidence intervals by the `honestdid` command, the `coefplot` package must be installed. I tried to combine several heterogeneity-robust DID methods (implemented by `csdid`, `eventstudyinteract`, and `did_multiplegt` in Stata) with the sensitive analyses (see [here](https://github.com/IanHo2019/Parallel_Trends/blob/main/Coding/RR_Sensitivity_Analyses_with_Staggered_DID.do) for my coding). The key point is that we need to provide two matrices (storing coefficient and variance estimates, respectively), `b` and `V` by default, for the `honestdid` command.
 
 ## To Be Continued...
-I sincerely thank my pre-PhD cohort [JaeSeok Oh](https://github.com/JaeSeok1218) for his assistance in writing this repository. Comments and corrections on my coding are always welcomed; you can report them by posting in `Issues` or by contacting me privately by [email](mailto:ianho0815@outlook.com?subject=[GitHub]%20Parallel%20Trends).
+I sincerely thank my former PhD cohort [JaeSeok Oh](https://github.com/JaeSeok1218) for his assistance in writing this repository. Comments and corrections on my coding are always welcomed; you can report them by posting in `Issues` or by contacting me privately by [email](mailto:ianho0815@outlook.com?subject=[GitHub]%20Parallel%20Trends).
